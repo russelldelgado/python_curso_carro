@@ -1,0 +1,51 @@
+{% extends "ProyectoWebApp/base.html" %}
+{% load static %}
+{% block content %}
+{% for post in posts %}
+
+<!-- Heading -->
+<section class="page-section clearfix">
+    <div class="container">
+        <div class="intro">
+            <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{post.imagen.url}}" alt="" style="width: 50%;">
+            <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+                <h2 class="section-heading mb-4">
+                    <span class="section-heading-lower">{{post.titulo}}</span>
+
+                </h2>
+                <p class="mb-3">
+                    {{post.contenido}}
+                </p>
+                <p class="section-heading-upper" style="text-align:left; font-size: 10px; "> autor: {{post.autor}}</p>
+                <p class="section-heading-upper" style="text-align:left; font-size: 10px; "> categoria:
+                    {{post.categorias}}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+{% endfor %}
+
+    <section>
+        <div style="width: 75% ; margin:auto; text-align: center; color:white;" >
+            
+            categorias : 
+
+            {% for post in posts %}
+                {# {{post.categorias.all}} #}
+                {% for categoria in post.categorias.all %}
+                     <a  href="/blog/categoria/{{categoria.id}}/" target="_blank"  style="color:white ;text-decoration: underline !important;"> {{categoria.nombre}} </a>
+                     {# <a href="{%  url 'categoria' categoria.id  %}"> {{categoria.nombre}} </a> #}
+                {% endfor %}
+            {% endfor %}
+            
+
+
+        </div>
+    </section>
+
+{% endblock %}
